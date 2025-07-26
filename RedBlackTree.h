@@ -32,7 +32,7 @@ private:
     };
 
     Node* root; // Root of the Red-Black Tree
-
+    Node* NIL;
     // Utility function: Left Rotation
     void rotateLeft(Node*& node)
     {

@@ -28,7 +28,7 @@ int main()
 
      // Search for a node
     cout << "\nSearch for 18: "
-         << (rbt.search(18) != rbt.search(0))
+         << (rbtree.search(18) != rbtree.search(0))
          << endl; // Output: 1 (true)
     // Deleting nodes from Red-Black Tree
 
@@ -45,7 +45,7 @@ int main()
     rbtree.printTree();
 
     cout << "Search for 25: "
-         << (rbt.search(3) != rbt.search(0))
+         << (rbtree.search(3) != rbtree.search(0))
          << endl; // Output: 0 (false)
 
 
