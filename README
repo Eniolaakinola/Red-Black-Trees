@@ -1,12 +1,4 @@
 This project demonstrates a templated Red-Black Tree implemented in C++.
 A Red-Black Tree is a self-balancing binary search tree that ensures operations like insertion, deletion, and search are performed in logarithmic time. 
 This makes it efficient for maintaining ordered datasets with frequent updates.
-
-How to Run
-Compile the source file:
-
-Bash
-g++ -std=c++17 "Red-BlackTrees.cpp" -o redblack
-
-Run the executable:
-./redblack
+The implemenation of diffreent functions showing the performance of a Red-Black-Trees
