@@ -120,7 +120,102 @@ private:
 
         root->color = BLACK;
     }
+ // Utility function: Fixing Deletion Violation
+    void fixDelete(Node*& node)
+    {
+        while (node != root && node->color == BLACK) {
+            if (node == node->parent->left) {
+                Node* sibling = node->parent->right;
+                if (sibling->color == RED) {
+                    sibling->color = BLACK;
+                    node->parent->color = RED;
+                    rotateLeft(node->parent);
+                    sibling = node->parent->right;
+                }
+                if ((sibling->left == nullptr
+                     || sibling->left->color == BLACK)
+                    && (sibling->right == nullptr
+                        || sibling->right->color
+                               == BLACK)) {
+                    sibling->color = RED;
+                    node = node->parent;
+                }
+                else {
+                    if (sibling->right == nullptr
+                        || sibling->right->color == BLACK) {
+                        if (sibling->left != nullptr)
+                            sibling->left->color = BLACK;
+                        sibling->color = RED;
+                        rotateRight(sibling);
+                        sibling = node->parent->right;
+                    }
+                    sibling->color = node->parent->color;
+                    node->parent->color = BLACK;
+                    if (sibling->right != nullptr)
+                        sibling->right->color = BLACK;
+                    rotateLeft(node->parent);
+                    node = root;
+                }
+            }
+            else {
+                Node* sibling = node->parent->left;
+                if (sibling->color == RED) {
+                    sibling->color = BLACK;
+                    node->parent->color = RED;
+                    rotateRight(node->parent);
+                    sibling = node->parent->left;
+                }
+                if ((sibling->left == nullptr
+                     || sibling->left->color == BLACK)
+                    && (sibling->right == nullptr
+                        || sibling->right->color
+                               == BLACK)) {
+                    sibling->color = RED;
+                    node = node->parent;
+                }
+                else {
+                    if (sibling->left == nullptr
+                        || sibling->left->color == BLACK) {
+                        if (sibling->right != nullptr)
+                            sibling->right->color = BLACK;
+                        sibling->color = RED;
+                        rotateLeft(sibling);
+                        sibling = node->parent->left;
+                    }
+                    sibling->color = node->parent->color;
+                    node->parent->color = BLACK;
+                    if (sibling->left != nullptr)
+                        sibling->left->color = BLACK;
+                    rotateRight(node->parent);
+                    node = root;
+                }
+            }
+        }
+        node->color = BLACK;
+    }
 
+    // Utility function: Find Node with Minimum Value
+    Node* minValueNode(Node*& node)
+    {
+        Node* current = node;
+        while (current->left != nullptr)
+            current = current->left;
+        return current;
+    }
+
+    // Utility function: Transplant nodes in Red-Black Tree
+    void transplant(Node*& root, Node*& u, Node*& v)
+    {
+        if (u->parent == nullptr)
+            root = v;
+        else if (u == u->parent->left)
+            u->parent->left = v;
+        else
+            u->parent->right = v;
+        if (v != nullptr)
+            v->parent = u->parent;
+    }
+    
     // Recursive helper for printing
     void printHelper(Node<T>* root, string indent, bool last) {
         if (root != nullptr) {
@@ -157,8 +252,78 @@ private:
         return searchHelper(node->right, key);
     }
 
+     void deleteTree(Node* node)
+    {
+        if (node != nullptr) {
+            deleteTree(node->left);
+            deleteTree(node->right);
+            delete node;
+        }
+    }
 public:
     RedBlackTree() : root(nullptr) {}
+
+    // Destructor: Delete Red-Black Tree
+    ~RedBlackTree() { deleteTree(root); }
+
+      // Public function: Remove a value from Red-Black Tree
+    void remove(T key)
+    {
+        Node* node = root;
+        Node* z = nullptr;
+        Node* x = nullptr;
+        Node* y = nullptr;
+        while (node != nullptr) {
+            if (node->data == key) {
+                z = node;
+            }
+
+            if (node->data <= key) {
+                node = node->right;
+            }
+            else {
+                node = node->left;
+            }
+        }
+
+        if (z == nullptr) {
+            cout << "Key not found in the tree" << endl;
+            return;
+        }
+
+        y = z;
+        Color yOriginalColor = y->color;
+        if (z->left == nullptr) {
+            x = z->right;
+            transplant(root, z, z->right);
+        }
+        else if (z->right == nullptr) {
+            x = z->left;
+            transplant(root, z, z->left);
+        }
+        else {
+            y = minValueNode(z->right);
+            yOriginalColor = y->color;
+            x = y->right;
+            if (y->parent == z) {
+                if (x != nullptr)
+                    x->parent = y;
+            }
+            else {
+                transplant(root, y, y->right);
+                y->right = z->right;
+                y->right->parent = y;
+            }
+            transplant(root, z, y);
+            y->left = z->left;
+            y->left->parent = y;
+            y->color = z->color;
+        }
+        delete z;
+        if (yOriginalColor == BLACK) {
+            fixDelete(x);
+        }
+    }
 
     void insert(T data) {
         Node<T>* newNode = new Node<T>(data);
@@ -185,11 +350,17 @@ public:
         }
     }
 
-    // Public function to print tree structure
-    void printTree() {
-        if (root)
+    // Public function: Print the Red-Black Tree
+    void printTree()
+    {
+        if (root == nullptr)
+            cout << "Tree is empty." << endl;
+        else {
+            cout << "Red-Black Tree:" << endl;
             printHelper(root, "", true);
+        }
     }
+};
 
     // Public function to perform inorder traversal
     void inorder() const {

@@ -14,6 +14,9 @@ int main() {
     rbt.insert(20);
     rbt.insert(30);
     rbt.insert(15);
+    rbt.insert(18);
+    rbt.insert(11);
+    rbt.insert(3);
 
     // Print tree structure
     cout << "Initial Red-Black Tree:" << endl;
@@ -29,14 +32,18 @@ int main() {
 
     cout << "Searching for 25: ";
     cout << (rbt.search(25) ? "Found" : "Not Found") << endl;
+// Deleting nodes from Red-Black Tree
+    cout << "After deleting 18:" << endl;
+    rbtree.remove(18);
+    rbtree.printTree();
 
-    // Remove a value
-    cout << "\nRemoving 20 from the tree..." << endl;
-    rbt.remove(20);
+    cout << "After deleting 11:" << endl;
+    rbtree.remove(11);
+    rbtree.printTree();
 
-    // Print tree after deletion
-    cout << "\nRed-Black Tree after deletion:" << endl;
-    rbt.printTree();
+    cout << "After deleting 3:" << endl;
+    rbtree.remove(3);
+    rbtree.printTree();
 
     // Final Inorder traversal
     cout << "\nFinal Inorder traversal: ";
