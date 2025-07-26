@@ -7,39 +7,37 @@ Description: in CPT_s 233  we discussed about different advanced Data structure.
 
 #include "RedBlackTree.h"
 
-int main() {
-    RedBlackTree<int> rbt;
+int main()
+{
+    RedBlackTree<int> rbtree;
 
-    // Insert nodes to shape the expected tree
-    rbt.insert(7);
-    rbt.insert(3);
-    rbt.insert(2);
-    rbt.insert(6);
-    rbt.insert(18);
-    rbt.insert(10);
-    rbt.insert(8);
-    rbt.insert(11);
-    rbt.insert(22);
-    rbt.insert(26);
+    // Inserting values into Red-Black Tree
+    rbtree.insert(7);
+    rbtree.insert(3);
+    rbtree.insert(18);
+    rbtree.insert(10);
+    rbtree.insert(22);
+    rbtree.insert(8);
+    rbtree.insert(11);
+    rbtree.insert(26);
+    rbtree.insert(2);
+    rbtree.insert(6);
 
-    // Display initial Red-Black Tree
-    cout << "Red-Black Tree:" << endl;
-    rbt.printTree();
+    // Printing Red-Black Tree
+    rbtree.printTree();
 
-    // First Deletion
-    cout << "\nAfter deleting 18:" << endl;
-    rbt.remove(18);
-    rbt.printTree();
+    // Deleting nodes from Red-Black Tree
+    cout << "After deleting 18:" << endl;
+    rbtree.remove(18);
+    rbtree.printTree();
 
-    // Second Deletion
-    cout << "\nAfter deleting 11:" << endl;
-    rbt.remove(11);
-    rbt.printTree();
+    cout << "After deleting 11:" << endl;
+    rbtree.remove(11);
+    rbtree.printTree();
 
-    // Third Deletion
-    cout << "\nAfter deleting 3:" << endl;
-    rbt.remove(3);
-    rbt.printTree();
+    cout << "After deleting 3:" << endl;
+    rbtree.remove(3);
+    rbtree.printTree();3
 
     return 0;
 }
