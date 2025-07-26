@@ -37,7 +37,7 @@ int main()
 
     cout << "After deleting 3:" << endl;
     rbtree.remove(3);
-    rbtree.printTree();3
+    rbtree.printTree();
 
     return 0;
 }
