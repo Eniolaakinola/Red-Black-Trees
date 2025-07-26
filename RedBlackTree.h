@@ -32,7 +32,6 @@ private:
     };
 
     Node* root; // Root of the Red-Black Tree
-    Node* NIL;
     // Utility function: Left Rotation
     void rotateLeft(Node*& node)
     {
@@ -251,7 +250,7 @@ private:
         }
     }
 
-     // Search helper function
+   /*  // Search helper function
     Node* searchHelper(Node* node, int data)
     {
         if (node == NIL || data == node->data) {
@@ -262,18 +261,12 @@ private:
         }
         return searchHelper(node->right, data);
     }
+        */
 
 public:
-   RedBlackTree()
-    : root(nullptr), NIL(nullptr)
-{
-    NIL = new Node();
-    NIL->color = BLACK;
-    NIL->left = NIL;
-    NIL->right = NIL;
+  // Constructor: Initialize Red-Black Tree 
+     RedBlackTree() : root(nullptr) { }
 
-    root = NIL;
-}
 
     // Destructor: Delete Red-Black Tree
     ~RedBlackTree() { deleteTree(root); }
