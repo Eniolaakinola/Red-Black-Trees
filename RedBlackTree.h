@@ -264,11 +264,16 @@ private:
     }
 
 public:
-    // Constructor: Initialize Red-Black Tree
-    RedBlackTree()
-        : root(nullptr)
-    {
-    }
+   RedBlackTree()
+    : root(nullptr), NIL(nullptr)
+{
+    NIL = new Node();
+    NIL->color = BLACK;
+    NIL->left = NIL;
+    NIL->right = NIL;
+
+    root = NIL;
+}
 
     // Destructor: Delete Red-Black Tree
     ~RedBlackTree() { deleteTree(root); }
