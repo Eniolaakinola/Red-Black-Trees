@@ -9,12 +9,6 @@
 
 using namespace std;
 
-#ifndef RED_BLACK_TREE_H
-#define RED_BLACK_TREE_H
-
-#include <iostream>
-using namespace std;
-
 enum Color { RED, BLACK };
 
 template <typename T>
