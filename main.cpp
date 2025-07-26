@@ -1,9 +1,3 @@
-/*
-Name: Eniola Akinola
-Class: CPT_S 223 Advanced Data Structures
-Date: 7/25/2025
-Description: Implementation of Red Black Tree
-*/
 #include "RedBlackTree.h"
 
 int main() {
@@ -24,7 +18,7 @@ int main() {
 
     // Inorder traversal (should be sorted)
     cout << "\nInorder traversal: ";
-    rbt.inorder();  // Output: 10 15 20 30
+    rbt.inorder();
 
     // Search for values
     cout << "\nSearching for 15: ";
@@ -32,18 +26,19 @@ int main() {
 
     cout << "Searching for 25: ";
     cout << (rbt.search(25) ? "Found" : "Not Found") << endl;
-// Deleting nodes from Red-Black Tree
+
+    // Deleting nodes from Red-Black Tree
     cout << "After deleting 18:" << endl;
-    rbtree.remove(18);
-    rbtree.printTree();
+    rbt.remove(18);
+    rbt.printTree();
 
     cout << "After deleting 11:" << endl;
-    rbtree.remove(11);
-    rbtree.printTree();
+    rbt.remove(11);
+    rbt.printTree();
 
     cout << "After deleting 3:" << endl;
-    rbtree.remove(3);
-    rbtree.printTree();
+    rbt.remove(3);
+    rbt.printTree();
 
     // Final Inorder traversal
     cout << "\nFinal Inorder traversal: ";
@@ -51,4 +46,3 @@ int main() {
 
     return 0;
 }
-
