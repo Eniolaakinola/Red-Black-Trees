@@ -251,6 +251,18 @@ private:
         }
     }
 
+     // Search helper function
+    Node* searchHelper(Node* node, int data)
+    {
+        if (node == NIL || data == node->data) {
+            return node;
+        }
+        if (data < node->data) {
+            return searchHelper(node->left, data);
+        }
+        return searchHelper(node->right, data);
+    }
+
 public:
     // Constructor: Initialize Red-Black Tree
     RedBlackTree()
@@ -352,6 +364,12 @@ public:
             cout << "Red-Black Tree:" << endl;
             printHelper(root, "", true);
         }
+    }
+
+     // Search function
+    Node* search(int data)
+    {
+        return searchHelper(root, data);
     }
 };
 #endif
