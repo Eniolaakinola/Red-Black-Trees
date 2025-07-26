@@ -235,11 +235,14 @@ void RedBlackTree<T>::inorder() const {
 }
 
 template <typename T>
-void RedBlackTree<T>::printTree() {
+void RedBlackTree<T>::printTree() 
+{
     if (root == nullptr)
-        cout << "Tree is empty." << endl;
-    else
-        printHelper(root, "", true);
+            cout << "Tree is empty." << endl;
+        else {
+            cout << "Red-Black Tree:" << endl;
+            printHelper(root, "", true);
+        }
 }
 
 #endif
